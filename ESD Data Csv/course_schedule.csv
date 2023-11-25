@@ -1,4 +1,4 @@
-course_scheduleid,building,room,course_code,day,time,coursecourse_code
+course_scheduleid,building,room,course_code,day,time,courseID
 1,Building A,101,101,1,10:00:00,1
 2,Building B,201,201,2,14:30:00,2
 3,Building C,301,301,3,09:00:00,3

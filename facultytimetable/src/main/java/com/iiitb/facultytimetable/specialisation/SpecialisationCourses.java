@@ -12,10 +12,10 @@ public class SpecialisationCourses {
     public SpecialisationCourses() {
     }
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "coursecourseCode",nullable = false)
+    @JoinColumn(name = "course_courseCode")
     private Course course;
     @ManyToOne
-    @JoinColumn(name ="specialisationID",nullable = false)
+    @JoinColumn(name ="specialisationID")
     private Specialisation specialisation;
 
     public SpecialisationCourses(Integer specialisationCoursesID) {

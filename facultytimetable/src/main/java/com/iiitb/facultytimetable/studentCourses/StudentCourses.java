@@ -10,10 +10,10 @@ public class StudentCourses {
     @Id
     private Integer studentCoursesId;
     @ManyToOne
-    @JoinColumn(name = "rollNumber",nullable = false)
+    @JoinColumn(name = "studentID")
     private Student student;
-    @OneToOne
-    @JoinColumn(name = "courseCode",nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "courseID")
     private Course course;
 
     public StudentCourses() {

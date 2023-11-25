@@ -7,8 +7,8 @@ import jakarta.persistence.*;
 @Table
 public class Student {
     @Id
-    @SequenceGenerator(name = "student_sequence",sequenceName = "student_sequence",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "student_sequence")
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer studentID;
 
     @Column(nullable = false,unique = true)
@@ -19,8 +19,8 @@ public class Student {
     private Double cgpa;
     private Integer totalCredits;
     private Integer graduationYear;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "specialisationID")
+    @ManyToOne
+    @JoinColumn(name = "specialisationID")
     private Specialisation specialisation;
     public Student() {
     }

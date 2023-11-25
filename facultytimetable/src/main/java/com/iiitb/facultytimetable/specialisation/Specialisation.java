@@ -8,6 +8,7 @@ import java.time.Year;
 @Table
 public class Specialisation {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer specialisationID;
     @Column(unique = true,nullable = false)
     private Integer code;

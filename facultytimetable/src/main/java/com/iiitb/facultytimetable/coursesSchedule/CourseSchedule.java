@@ -10,12 +10,8 @@ import java.time.LocalTime;
 @Table
 public class CourseSchedule {
     @Id
-    @SequenceGenerator(name = "course_sequence",sequenceName = "course_sequence",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "course_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer courseScheduleID;
-    @ManyToOne
-    @JoinColumn(name = "coursecourseCode",nullable = false)
-    private Course course;
     @Column(nullable = false,unique = true)
     private Integer courseCode;
     @Column(nullable = false)
@@ -25,6 +21,9 @@ public class CourseSchedule {
     @Column(nullable = false)
     private String Room;
     private String Building;
+    @ManyToOne
+    @JoinColumn(name = "courseID",nullable = false)
+    private Course course;
 
     public CourseSchedule() {
     }

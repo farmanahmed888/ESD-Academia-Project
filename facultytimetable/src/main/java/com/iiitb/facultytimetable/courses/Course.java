@@ -11,12 +11,8 @@ import java.time.Year;
 @Table
 public class Course {
     @Id
-    @SequenceGenerator(name = "course_sequence",sequenceName = "course_sequence",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "course_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer courseID;
-    @ManyToOne
-    @JoinColumn(name = "employeeID",nullable = false)
-    private Employee employee;
     @Column(nullable = false,unique = true)
     private Integer courseCode;
     @Column(nullable = false)
@@ -31,13 +27,15 @@ public class Course {
     private Integer credits;
     @Column(nullable = false)
     private Integer capacity;
+    @ManyToOne
+    @JoinColumn(name = "employeeID",nullable = false)
+    private Employee employee;
 
     public Course() {
     }
 
-    public Course(Integer courseID, Employee employee, Integer courseCode, String name, String description, Year year, Integer term, Integer credits, Integer capacity) {
+    public Course(Integer courseID, Integer courseCode, String name, String description, Year year, Integer term, Integer credits, Integer capacity, Employee employee) {
         this.courseID = courseID;
-        this.employee = employee;
         this.courseCode = courseCode;
         this.name = name;
         this.description = description;
@@ -45,10 +43,10 @@ public class Course {
         this.term = term;
         this.credits = credits;
         this.capacity = capacity;
+        this.employee = employee;
     }
 
-    public Course(Employee employee, Integer courseCode, String name, String description, Year year, Integer term, Integer credits, Integer capacity) {
-        this.employee = employee;
+    public Course(Integer courseCode, String name, String description, Year year, Integer term, Integer credits, Integer capacity, Employee employee) {
         this.courseCode = courseCode;
         this.name = name;
         this.description = description;
@@ -56,6 +54,7 @@ public class Course {
         this.term = term;
         this.credits = credits;
         this.capacity = capacity;
+        this.employee = employee;
     }
 
     public Integer getCourseID() {
@@ -64,14 +63,6 @@ public class Course {
 
     public void setCourseID(Integer courseID) {
         this.courseID = courseID;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
     }
 
     public Integer getCourseCode() {
@@ -130,11 +121,18 @@ public class Course {
         this.capacity = capacity;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
                 "courseID=" + courseID +
-                ", employee=" + employee +
                 ", courseCode=" + courseCode +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
@@ -142,6 +140,7 @@ public class Course {
                 ", term=" + term +
                 ", credits=" + credits +
                 ", capacity=" + capacity +
+                ", employee=" + employee +
                 '}';
     }
 }
