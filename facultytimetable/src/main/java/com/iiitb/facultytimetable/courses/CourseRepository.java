@@ -11,5 +11,5 @@ import java.util.Optional;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course,Integer>, CrudRepository<Course,Integer> {
-    List<Course> findCourseByEmployee(@Param("employee") Optional<Employee> employee);
+    List<Course> findCoursesByEmployee(@Param("employee") Employee employee);
 }

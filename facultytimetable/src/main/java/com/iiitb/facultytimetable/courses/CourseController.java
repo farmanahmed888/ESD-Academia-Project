@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 //controller
 //API layer
@@ -16,6 +15,7 @@ import java.util.Optional;
 public class CourseController {
     private final CourseService courseService;
     private final EmployeeService employeeService;
+
     @Autowired
     public CourseController(CourseService courseService, EmployeeService employeeService) {
         this.courseService = courseService;
@@ -27,13 +27,19 @@ public class CourseController {
     public void  registerNewCourse(@RequestBody Course course){
         courseService.addNewCourse(course);
     }
-    @GetMapping("/by-faculty/{employeeid}")
-    public ResponseEntity<List<Course>> getCourseByEmployee(@PathVariable Integer EmployeeId){
-        Optional<Employee> employee=employeeService.getEmployeeByID(EmployeeId);
-        if(employee==null){
+    @GetMapping("/courses/by-faculty/{facultyId}")
+    public ResponseEntity<List<Course>> getCoursesByEmployee(@PathVariable Integer facultyId) {
+        // Retrieve the Faculty entity from the database
+        Employee employee = employeeService.getEmployeeyById(facultyId);
+
+        if (employee == null) {
+            // Faculty not found
             return ResponseEntity.notFound().build();
         }
+
+        // Retrieve the courses for the given faculty
         List<Course> courses = courseService.getCoursesByEmployee(employee);
+
         return ResponseEntity.ok(courses);
     }
 }

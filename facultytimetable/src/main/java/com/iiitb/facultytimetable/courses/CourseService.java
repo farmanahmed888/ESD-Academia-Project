@@ -5,7 +5,9 @@ import com.iiitb.facultytimetable.student.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -26,7 +28,8 @@ public class CourseService {
         courseRepository.save(course);
     }
 
-    public List<Course> getCoursesByEmployee(Optional<Employee> employee) {
-        return courseRepository.findCourseByEmployee(employee);
+    public List<Course> getCoursesByEmployee(Employee employee) {
+        return courseRepository.findCoursesByEmployee(employee);
     }
+
 }
