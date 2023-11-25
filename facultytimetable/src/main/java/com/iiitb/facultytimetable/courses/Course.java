@@ -2,6 +2,8 @@ package com.iiitb.facultytimetable.courses;
 
 import com.iiitb.facultytimetable.employees.Employee;
 import jakarta.persistence.*;
+import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Year;
 
