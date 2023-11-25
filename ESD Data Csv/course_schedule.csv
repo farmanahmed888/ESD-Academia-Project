@@ -1,0 +1,21 @@
+course_scheduleid,building,room,course_code,day,time,coursecourse_code
+1,Building A,101,101,1,10:00:00,1
+2,Building B,201,201,2,14:30:00,2
+3,Building C,301,301,3,09:00:00,3
+4,Building D,102,102,4,11:30:00,4
+5,Building E,202,202,5,13:00:00,5
+6,Building F,302,302,1,15:30:00,6
+7,Building G,103,103,2,08:00:00,7
+8,Building H,203,203,3,12:30:00,8
+9,Building I,303,303,4,10:30:00,9
+10,Building J,104,104,5,14:00:00,10
+11,Building A,105,105,1,08:30:00,11
+12,Building B,205,205,2,11:00:00,12
+13,Building C,305,305,3,14:30:00,13
+14,Building D,106,106,4,09:30:00,14
+15,Building E,206,206,5,12:00:00,15
+16,Building F,306,306,1,15:00:00,16
+17,Building G,107,107,2,10:00:00,17
+18,Building H,207,207,3,13:30:00,18
+19,Building I,307,307,4,08:30:00,19
+20,Building J,108,108,5,11:00:00,20

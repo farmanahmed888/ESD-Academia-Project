@@ -1,5 +1,6 @@
 package com.iiitb.facultytimetable.courses;
 
+import com.iiitb.facultytimetable.employees.Employee;
 import com.iiitb.facultytimetable.student.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,12 @@ public class CourseService {
         courseRepository.save(course);
     }
 
+
     public void addNewCourse(Course course) {
         courseRepository.save(course);
+    }
+
+    public List<Course> getCoursesByEmployee(Optional<Employee> employee) {
+        return courseRepository.findCourseByEmployee(employee);
     }
 }
