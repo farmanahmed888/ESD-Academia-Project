@@ -1,14 +1,17 @@
 package com.iiitb.facultytimetable.coursesSchedule;
 
+import com.iiitb.facultytimetable.courses.Course;
+import com.iiitb.facultytimetable.courses.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import com.iiitb.facultytimetable.courses.Course.*;
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/courseschedule")
 public class CourseScheduleController {
     private final CourseScheduleService courseScheduleService;
+
     @Autowired
     public CourseScheduleController(CourseScheduleService courseScheduleService) {
         this.courseScheduleService = courseScheduleService;
@@ -18,5 +21,9 @@ public class CourseScheduleController {
     @PostMapping
     public  void registerNewCourseSchedule(@RequestBody CourseSchedule courseSchedule){
         courseScheduleService.addNewCourseSchedule(courseSchedule);
+    }
+    @GetMapping(path = "/course/{input}")
+    public List<Object[]> quesionone(@PathVariable Integer input){
+        return courseScheduleService.getCourseName(input);
     }
 }

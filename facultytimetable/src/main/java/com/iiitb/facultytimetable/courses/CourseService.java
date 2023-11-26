@@ -18,18 +18,9 @@ public class CourseService {
     public CourseService(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
-    public List<Course> getCourse(){return  courseRepository.findAll();}
-    public void addCourse(Course course){
-        courseRepository.save(course);
+    public List<Object[]> getCourses(Integer courseID){
+        return courseRepository.getAllCourses(courseID);
     }
 
-
-    public void addNewCourse(Course course) {
-        courseRepository.save(course);
-    }
-
-    public List<Course> getCoursesByEmployee(Employee employee) {
-        return courseRepository.findCoursesByEmployee(employee);
-    }
 
 }

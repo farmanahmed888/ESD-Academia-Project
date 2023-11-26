@@ -1,6 +1,7 @@
-package com.iiitb.facultytimetable.specialisation;
+package com.iiitb.facultytimetable.specialisationcourses;
 
 import com.iiitb.facultytimetable.courses.Course;
+import com.iiitb.facultytimetable.specialisation.Specialisation;
 import jakarta.persistence.*;
 
 @Entity

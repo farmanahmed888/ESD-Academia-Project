@@ -21,5 +21,9 @@ public class StudentCoursesController {
     public void registerNewStudentCourse(@RequestBody StudentCourses studentCourses){
         studentCoursesServices.addNewStudentCourse(studentCourses);
     }
+    @GetMapping(path = "/all/{employeeID}")
+    public List<Object[]> question2(@PathVariable Integer employeeID){
+        return studentCoursesServices.findStudents(employeeID);
+    }
 
 }

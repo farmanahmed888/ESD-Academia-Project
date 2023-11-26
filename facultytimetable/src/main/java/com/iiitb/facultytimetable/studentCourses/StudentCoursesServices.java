@@ -20,4 +20,7 @@ public class StudentCoursesServices {
         studentCoursesRepository.save(studentCourses);
     }
 
+    public List<Object[]> findStudents(Integer employeeID) {
+        return studentCoursesRepository.findStudentsByEmployeeID(employeeID);
+    }
 }

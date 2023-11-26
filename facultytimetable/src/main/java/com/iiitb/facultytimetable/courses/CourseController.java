@@ -2,11 +2,14 @@ package com.iiitb.facultytimetable.courses;
 
 import com.iiitb.facultytimetable.employees.Employee;
 import com.iiitb.facultytimetable.employees.EmployeeService;
+import com.iiitb.facultytimetable.specialisationcourses.SpecialisationCourses;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 //controller
 //API layer
@@ -21,25 +24,8 @@ public class CourseController {
         this.courseService = courseService;
         this.employeeService = employeeService;
     }
-    @GetMapping
-    public List<Course> getCourse(){return courseService.getCourse();}
-    @PostMapping
-    public void  registerNewCourse(@RequestBody Course course){
-        courseService.addNewCourse(course);
-    }
-    @GetMapping("/courses/by-faculty/{facultyId}")
-    public ResponseEntity<List<Course>> getCoursesByEmployee(@PathVariable Integer facultyId) {
-        // Retrieve the Faculty entity from the database
-        Employee employee = employeeService.getEmployeeyById(facultyId);
-
-        if (employee == null) {
-            // Faculty not found
-            return ResponseEntity.notFound().build();
-        }
-
-        // Retrieve the courses for the given faculty
-        List<Course> courses = courseService.getCoursesByEmployee(employee);
-
-        return ResponseEntity.ok(courses);
+    @GetMapping(path = "/all/{courseID}")
+    public List<Object[]> abc(@PathVariable Integer courseID){
+        return courseService.getCourses(courseID);
     }
 }
