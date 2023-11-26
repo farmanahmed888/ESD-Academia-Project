@@ -2,6 +2,8 @@ package com.iiitb.facultytimetable.studentCourses;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +24,8 @@ public class StudentCoursesController {
         studentCoursesServices.addNewStudentCourse(studentCourses);
     }
     @GetMapping(path = "/all/{employeeID}")
-    public List<Object[]> question2(@PathVariable Integer employeeID){
-        return studentCoursesServices.findStudents(employeeID);
+    public ResponseEntity<List<Object[]>> question2(@PathVariable Integer employeeID){
+        return new ResponseEntity<>(studentCoursesServices.findStudents(employeeID), HttpStatus.OK);
     }
 
 }

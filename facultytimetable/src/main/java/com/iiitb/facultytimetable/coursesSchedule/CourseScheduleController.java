@@ -3,6 +3,9 @@ package com.iiitb.facultytimetable.coursesSchedule;
 import com.iiitb.facultytimetable.courses.Course;
 import com.iiitb.facultytimetable.courses.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.iiitb.facultytimetable.courses.Course.*;
 import java.util.List;
@@ -23,7 +26,7 @@ public class CourseScheduleController {
         courseScheduleService.addNewCourseSchedule(courseSchedule);
     }
     @GetMapping(path = "/course/{input}")
-    public List<Object[]> quesionone(@PathVariable Integer input){
-        return courseScheduleService.getCourseName(input);
+    public ResponseEntity<List<Object[]>> quesionone(@PathVariable Integer input){
+        return new ResponseEntity<>(courseScheduleService.getCourseName(input), HttpStatus.OK);
     }
 }
