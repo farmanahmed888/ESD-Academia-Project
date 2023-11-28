@@ -20,7 +20,7 @@ public class CourseScheduleService {
         courseScheduleRepository.save(courseSchedule);
     }
 
-    public List<Object[]> getCourseName(Integer input) {
+    public List<Object> getCourseName(Integer input) {
         return courseScheduleRepository.getCourseName(input);
     }
 }

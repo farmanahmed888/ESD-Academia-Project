@@ -15,7 +15,7 @@ public interface CourseScheduleRepository extends JpaRepository<CourseSchedule,I
     @Query("select cs,c " +
             "from CourseSchedule cs join cs.course c join cs.course.employee emp " +
             "where cs.course.employee.employeeID=:input")
-    List<Object[]> getCourseName(Integer input);
+    List<Object> getCourseName(Integer input);
 
 
 }

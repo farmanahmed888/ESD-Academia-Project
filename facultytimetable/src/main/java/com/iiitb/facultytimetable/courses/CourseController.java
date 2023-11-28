@@ -13,6 +13,7 @@ import java.util.Objects;
 
 //controller
 //API layer
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping(path="/course")
 public class CourseController {
