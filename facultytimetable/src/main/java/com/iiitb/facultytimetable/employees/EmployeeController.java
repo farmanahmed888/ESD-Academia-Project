@@ -20,9 +20,4 @@ public class EmployeeController {
     public List<Employee> getEmployee(){
         return employeeService.getEmployee();
     }
-    @PostMapping
-    public void registerNewEmployee(@RequestBody Employee employee){
-        employeeService.addNewEmployee(employee);
-    }
-
 }

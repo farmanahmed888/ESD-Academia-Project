@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Login() {
   let navigate = useNavigate();
@@ -15,30 +15,6 @@ export default function Login() {
   const [loginStatus, setLoginStatus] = useState(false);
   const [msg, setMsg] = useState('');
 
-  const userMap = new Map([
-    ['johndoe@example.com', { password: 'Password1', id: 1 }],
-    ['janesmith@example.com', { password: 'Password2', id: 2 }],
-    ['markjohnson@example.com', { password: 'Password3', id: 3 }],
-    ['amywilliams@example.com', { password: 'Password4', id: 4 }],
-    ['chrisanderson@example.com', { password: 'Password5', id: 5 }],
-    ['susanbrown@example.com', { password: 'Password6', id: 6 }],
-    ['brianclark@example.com', { password: 'Password7', id: 7 }],
-    ['emilymoore@example.com', { password: 'Password8', id: 8 }],
-    ['davidroberts@example.com', { password: 'Password9', id: 9 }],
-    ['lisataylor@example.com', { password: 'Password10', id: 10 }],
-    ['ryanmiller@example.com', { password: 'Password11', id: 11 }],
-    ['caroljones@example.com', { password: 'Password12', id: 12 }],
-    ['stevenwilson@example.com', { password: 'Password13', id: 13 }],
-    ['laurasmith@example.com', { password: 'Password14', id: 14 }],
-    ['kevinbrown@example.com', { password: 'Password15', id: 15 }],
-    ['melissajones@example.com', { password: 'Password16', id: 16 }],
-    ['adamclark@example.com', { password: 'Password17', id: 17 }],
-    ['sarahmoore@example.com', { password: 'Password18', id: 18 }],
-    ['alexroberts@example.com', { password: 'Password19', id: 19 }],
-    ['jacktaylor@example.com', { password: 'Password20', id: 20 }]
-    // Add more users as needed
-  ]);
-
   const onInputChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
@@ -47,14 +23,19 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const user = userMap.get(email);
-
-      if (user && user.password === password) {
-        console.log(user.id);
+      const response = await axios.post('http://localhost:9001/login/getEmployeeID', {
+        email: email,
+        password: password,
+      });
+      
+      const user = response.data;
+      
+      console.log(user);
+      if (user !==-1) {
         setMsg('Login successful');
         setLoginStatus(true);
-
-        navigate(`/Home/${user.id}`); // Include the user ID in the route
+  
+        navigate(`/Home/${user}`);
       } else {
         setMsg('Wrong password or email');
         setLoginStatus(false);
@@ -66,7 +47,6 @@ export default function Login() {
       navigate('/');
     }
   };
-
 
   return (
     <div className="container">
