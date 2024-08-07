@@ -22,4 +22,4 @@ This project is a web application that allows faculty members to view their time
 
 - Java
 - Node.js and npm
-- MySQl (or any preferred database)
+- MySQL (or any preferred database)
