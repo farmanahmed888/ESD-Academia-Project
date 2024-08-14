@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.iiitb.facultytimetable.courses.Course.*;
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/courseschedule")
 public class CourseScheduleController {

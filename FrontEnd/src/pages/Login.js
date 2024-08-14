@@ -23,7 +23,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:9001/login/getEmployeeID', {
+      const response = await axios.post('https://faculty-time-table-432516.uc.r.appspot.com/login/getEmployeeID', {
         email: email,
         password: password,
       });

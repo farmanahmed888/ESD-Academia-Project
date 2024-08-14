@@ -7,7 +7,7 @@ import java.util.List;
 
 //controller
 //API layer
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path="/employee")
 public class EmployeeController {

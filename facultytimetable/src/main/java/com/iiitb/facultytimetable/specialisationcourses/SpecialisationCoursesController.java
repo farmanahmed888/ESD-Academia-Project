@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 //controller
 //API layer
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path="/special-course")
 public class SpecialisationCoursesController {

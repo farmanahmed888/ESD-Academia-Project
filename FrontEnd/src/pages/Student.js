@@ -14,7 +14,7 @@ export default function Student() {
   const loadUsers = async (userId) => {
     try {
       console.log("user id is " + userId);
-      const result = await axios.get(`http://localhost:9001/studentcourses/all/${userId}`);
+      const result = await axios.get(`https://faculty-time-table-432516.uc.r.appspot.com/studentcourses/all/${userId}`);
       console.log(result.data);
       setUsers(result.data);
     } catch (error) {

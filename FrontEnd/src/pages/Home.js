@@ -12,7 +12,7 @@ export default function Home() {
 
   const loadUsers = async (userId) => {
     try {
-      const result = await axios.get(`http://localhost:9001/courseschedule/course/${userId}`);
+      const result = await axios.get(`https://faculty-time-table-432516.uc.r.appspot.com/courseschedule/course/${userId}`);
       const courseSchedules = result.data;
       const firstName = courseSchedules[0][1].employee.firstName;
       const lastName = courseSchedules[0][1].employee.lastName;
