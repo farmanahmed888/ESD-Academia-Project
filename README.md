@@ -1,5 +1,10 @@
 # Faculty Timetable System
 
+## App Access
+```
+https://react-frontend-time-table.web.app
+```
+
 ## Overview
 
 This project is a web application that allows faculty members to view their timetable, including the courses they teach, their specializations, and room numbers. Faculty can also view the list of students enrolled in a specific course.
