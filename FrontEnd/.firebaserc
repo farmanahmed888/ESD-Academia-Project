@@ -1,5 +1,5 @@
 {
   "projects": {
-    "default": "react-frontend-time-table"
+    "default": "faculty-timetable-frontend"
   }
 }

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../login/authSlice";
 import axios from 'axios';
+import { authApi } from '../login/authApi';
 
 export default function Login() {
   let navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
@@ -23,25 +26,25 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://faculty-time-table-432516.uc.r.appspot.com/login/getEmployeeID', {
-        email: email,
-        password: password,
-      });
+      const response = await authApi.login(loginData);
+      const userData = response;
+      dispatch(setCredentials(userData));
+      const user = response.employeeId;
       
-      const user = response.data;
-      
-      console.log(user);
-      if (user !==-1) {
-        setMsg('Login successful');
-        setLoginStatus(true);
+      // console.log(user);
+      // if (user !==-1) {
+      //   setMsg('Login successful');
+      //   setLoginStatus(true);
   
-        navigate(`/Home/${user}`);
-      } else {
-        setMsg('Wrong password or email');
-        setLoginStatus(false);
-        alert(`Wrong password or email: ${msg}`);
-        navigate('/');
-      }
+      //   navigate('/Home');
+      // } else {
+      //   setMsg('Wrong password or email');
+      //   setLoginStatus(false);
+      //   alert(`Wrong password or email: ${msg}`);
+      //   navigate('/');
+      // }
+      setLoginStatus(true);
+      navigate("/Home");  
     } catch (error) {
       alert(`Login failed: ${error}`);
       navigate('/');
@@ -85,9 +88,9 @@ export default function Login() {
             <button type="submit" className="btn btn-outline-primary">
               Submit
             </button>
-            <Link className="btn btn-outline-danger mx-2" to="/">
+            {/* <Link className="btn btn-outline-danger mx-2" to="/">
               Cancel
-            </Link>
+            </Link> */}
           </form>
         </div>
       </div>

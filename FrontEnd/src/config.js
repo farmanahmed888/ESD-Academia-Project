@@ -1,0 +1,1 @@
+export const LOCALHOST = "https://faculty-time-table-432709.el.r.appspot.com";

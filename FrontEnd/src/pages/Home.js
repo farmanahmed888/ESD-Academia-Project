@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getRequest } from '../login/Api/api';
+
 
 export default function Home() {
   const [users, setUsers] = useState([]);
-  const { id } = useParams();
-
+  const id = useSelector((state) => state.auth.employeeId);
+  const token = useSelector((state) => state.auth.jwtToken);
+  console.log(id, token);
   useEffect(() => {
     loadUsers(id);
   }, [id]);
 
   const loadUsers = async (userId) => {
     try {
-      const result = await axios.get(`https://faculty-time-table-432516.uc.r.appspot.com/courseschedule/course/${userId}`);
-      const courseSchedules = result.data;
+      //const headers = { Authorization: `Bearer ${token}` };
+      const result = await getRequest(`/courseschedule/course/${userId}`);
+      console.log(result);
+      const courseSchedules = result;
       const firstName = courseSchedules[0][1].employee.firstName;
       const lastName = courseSchedules[0][1].employee.lastName;
       console.log('First Name:', firstName);
       console.log('Last Name:', lastName);
-      console.log(result.data);
-      setUsers(result.data);
+      console.log(result);
+      setUsers(result);
     } catch (error) {
       console.error('Error loading users:', error);
     }
@@ -61,7 +67,7 @@ export default function Home() {
                 <td>{user[0].building}</td>
                 <td>
 
-                  <Link className="btn btn-outline-primary mx-2" to={`/Student/${user[1].employee.employeeID}`}>
+                  <Link className="btn btn-outline-primary mx-2" to={`/Student`}>
                     See enrolled
                   </Link>
 

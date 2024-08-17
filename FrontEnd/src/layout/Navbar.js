@@ -1,25 +1,31 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { logout } from "../login/authSlice";
+import { useDispatch } from "react-redux";
+import { postRequest } from "../login/Api/api";
+import { useNavigate } from "react-router-dom"; 
 export default function Navbar() {
+  const token = useSelector((state) => state.auth.jwtToken);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  async  function handleLogout() {
+    dispatch(logout());
+    navigate("/");
+  }
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            Full Stack Application
+          <Link className="navbar-brand" to="/Home">
+            Faculty Time Table
           </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+          {(token)&&(<button
+            class="btn btn-danger"
+            onClick={handleLogout}
           >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+            Logout
+          </button>)}
         </div>
       </nav>
     </div>

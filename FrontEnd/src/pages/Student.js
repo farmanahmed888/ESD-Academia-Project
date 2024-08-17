@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-
+import { getRequest } from '../login/Api/api';
+import { useSelector } from 'react-redux';  
 export default function Student() {
   const [users, setUsers] = useState([]);
-  const { employeeID } = useParams();
-  console.log(employeeID);
+  //const { employeeID } = useParams();
+  const employeeID = useSelector((state) => state.auth.employeeId);
 
   useEffect(() => {
     loadUsers(employeeID);
@@ -14,9 +15,9 @@ export default function Student() {
   const loadUsers = async (userId) => {
     try {
       console.log("user id is " + userId);
-      const result = await axios.get(`https://faculty-time-table-432516.uc.r.appspot.com/studentcourses/all/${userId}`);
-      console.log(result.data);
-      setUsers(result.data);
+      const result = await getRequest(`/studentcourses/all/${employeeID}`);
+      console.log(result);
+      setUsers(result);
     } catch (error) {
       console.error('Error loading users:', error);
     }
